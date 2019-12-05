@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Movie from "./Movie";
-import "./App.css";
+import React, { Component } from "react"
+import Movie from "./Movie"
+import "./App.css"
 
 // function App() {
 //   return <div className="App"></div>;
@@ -26,45 +26,35 @@ import "./App.css";
 // ];
 
 class App extends Component {
-  state = {};
+  state = {}
 
   componentDidMount() {
-    this._getMovies();
+    this._getMovies()
   }
 
   _renderMovies = () => {
     const movies = this.state.movies.map(movie => {
-      console.log(movie.title);
-      return (
-        <Movie
-          title={movie.title}
-          posterImg={movie.large_cover_image}
-          key={movie.id}
-        ></Movie>
-      );
-    });
-    return movies;
-  };
+      console.log(movie.title)
+      return <Movie title={movie.title} posterImg={movie.large_cover_image} key={movie.id}></Movie>
+    })
+    return movies
+  }
 
   _getMovies = async () => {
-    const movies = await this._callApi();
-    this.setState({ movies });
-  };
+    const movies = await this._callApi()
+    this.setState({ movies })
+  }
 
   _callApi = () => {
-    return fetch("https://yts.lt/api/v2/list_movies.json?sort_by=rating")
+    return fetch("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
       .then(root => root.jason())
       .then(jason => jason.data.movie)
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   render() {
-    return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : "loading"}
-      </div>
-    );
+    return <div className="App">{this.state.movies ? this._renderMovies() : "loading"}</div>
   }
 }
 
-export default App;
+export default App
