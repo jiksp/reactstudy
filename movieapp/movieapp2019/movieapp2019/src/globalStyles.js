@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components"
 import reset from "styled-reset"
-createGlobalStyle`
+import { createGlobalStyle } from "styled-components"
+const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500');
   ${reset};
   body{
@@ -13,6 +13,7 @@ createGlobalStyle`
   main {
     width: 80%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
   }
 `
+export default GlobalStyle
